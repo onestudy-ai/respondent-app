@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans as MainFont } from 'next/font/google'
-import './globals.css'
 import { cn } from '@/lib/utils'
+
+import './globals.css'
 
 const mainFont = MainFont({
   subsets: ['latin'],
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body 
         className={cn(
           "min-h-screen bg-white dark:bg-black",
-          `${mainFont.className} font-sans`
+          `${mainFont.className} ${mainFont.variable}`
         )}
       >
         {children}
