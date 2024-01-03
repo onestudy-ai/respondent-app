@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Markdown from 'react-markdown';
 
 import { StudyUserMetaData } from "@/core/study";
@@ -32,15 +31,15 @@ export default function LandingPage(props: LandingPageProps) {
 					{/* <ModeToggle /> */}
 				</div>
 
-				<div className="relative w-5/6 lg:w-2/5 mx-auto pb-24 pt-10 lg:flex px-8 -mt-12 lg:-mt-32 bg-white dark:bg-black rounded-lg shadow-lg z-10">
+				<div className="relative w-5/6 lg:w-2/5 mx-auto pb-24 pt-10 lg:flex px-8 -mt-12 lg:-mt-32 bg-white dark:bg-black rounded-2xl shadow-lg z-10">
 					<div
 						className={'flex w-full flex-1 flex-col items-center space-y-10'}
 					>
 						{props.logoUrl ? (
-							<Image 
-									src={props.logoUrl}
-									className={'w-32 h-32 object-contain rounded-lg dark:bg-white p-3'}
-									alt="Starbucks Logo"
+							<img
+								src={props.logoUrl}
+								className={'w-32 h-32 object-contain rounded-lg dark:bg-white p-3'}
+								alt=""
 							/>
 						) : null}
 

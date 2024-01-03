@@ -17,13 +17,7 @@ export interface Study {
 	id: string;
 	name: string;
 	status?: StudyStatus;
-	summary?: string;
-	interviewerStyle?: string;
-	interviewerStyleCustomMessage?: string;
-	organizationId: string;
-	userId: string;
-	orgGroup?: string;
-	meta?: {
+	metaData?: {
 		numberCompleted?: number;
 		generalInformation?: string;
 		firstQuestion?: string;
@@ -36,14 +30,5 @@ export interface Study {
 		[key: string]: any;
 	};
 	userMetaData?: StudyUserMetaData[];
-	createdAt: Date | undefined;
 }
 
-export interface StudyEmails {
-	id: string;
-	organizationId: string;
-	studyId: string;
-	meta?: {
-		emails?: string[];
-	};
-}
