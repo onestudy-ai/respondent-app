@@ -10,6 +10,10 @@ type PageProps = {
 export default async function LinkInterview(props: PageProps) {
   const data = await getStudyData(props.params.id);
 
+  // TODO: Suspense wrapper
+  // TODO: Error handling
+  // TODO: Loading state(s)
+
   return (
     <>
       <Head>

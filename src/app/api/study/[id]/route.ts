@@ -4,6 +4,7 @@ export async function GET(
 	req: Request, 
 	{ params }: { params: { id: string } }
 ) {
+	// TODO: Add basic security, CORS, etc.
 	const id = params.id;
 	const res = await fetch(`${endpoint}/${id}`, {
 		headers: {
