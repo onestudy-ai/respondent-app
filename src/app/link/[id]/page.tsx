@@ -1,32 +1,35 @@
-import Head from "next/head";
+import type { Metadata, ResolvingMetadata } from "next"
 
-import { Study, StudyStatus } from "@/core/study";
-import LandingPage from "../../template/Landing";
+import { StudyStatus } from "@/core/study";
+import LandingPage from "@/app/template/Landing";
+import { getStudyById } from "@/data/study";
 
 type PageProps = {
   params: { id: string }
 }
 
-export default async function LinkInterview(props: PageProps) {
-  const data = await getStudyData(props.params.id);
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const data = await getStudyById(params.id);
 
-  // TODO: Suspense wrapper
-  // TODO: Error handling
-  // TODO: Loading state(s)
+  return {
+    title: data?.metaData?.shareTitle || "We need your feedback!",
+    description: data?.metaData?.shareDescription || "",
+  }
+}
+
+export default async function LinkInterview(props: PageProps) {
+  let data;
+  try {
+    data = await getStudyById(props.params.id);
+  } catch (error) {
+    data = null;
+  }
 
   return (
     <>
-      <Head>
-        <title>
-          {data?.metaData?.shareTitle || "We need your feedback!"}
-        </title>
-        <meta property="og:title" content={data?.metaData?.shareTitle || "We need your feedback!"} />
-        <meta
-          property="og:image"
-          content={`/api/og?title=${encodeURIComponent(data?.metaData?.shareTitle || "We need your feedback!")}`}
-        />
-      </Head>
-
       <LandingPage 
         title={data?.metaData?.shareTitle}
         description={data?.metaData?.shareDescription}
@@ -37,18 +40,4 @@ export default async function LinkInterview(props: PageProps) {
       />
     </>
   )
-}
-
-const getStudyData = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_URL}/api/study/${id}`;
-  const res = await fetch(url, {
-    cache: 'no-cache',
-  });
-
-  // TODO: make this nice
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-  const data = await res.json()
-  return data.data as Study;
 }

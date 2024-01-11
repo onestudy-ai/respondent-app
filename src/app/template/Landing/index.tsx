@@ -1,7 +1,10 @@
-import Markdown from 'react-markdown';
+"use client"
+
+import Markdown from "react-markdown";
 
 import { StudyUserMetaData } from "@/core/study";
-import { RespondentForm } from './components/RespondentForm';
+import { ModeToggle } from "@/app/components/ModeToggle";
+import { RespondentForm } from "./components/RespondentForm";
 
 const mainColor = "#3752dc";
 
@@ -28,7 +31,7 @@ export default function LandingPage(props: LandingPageProps) {
 				</div>
 
 				<div className="absolute top-2 right-2">
-					{/* <ModeToggle /> */}
+					<ModeToggle />
 				</div>
 
 				<div className="relative w-5/6 lg:w-2/5 mx-auto pb-24 pt-10 lg:flex px-8 -mt-12 lg:-mt-32 bg-white dark:bg-black rounded-2xl shadow-lg z-10">
