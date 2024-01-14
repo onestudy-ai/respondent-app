@@ -1,7 +1,8 @@
 import type { Metadata, ResolvingMetadata } from "next"
+import { Suspense } from "react";
 
-import { StudyStatus } from "@/core/study";
 import LandingPage from "@/app/template/Landing";
+import { StudyStatus } from "@/core/study";
 import { getStudyById } from "@/data/study";
 
 type PageProps = {
@@ -29,7 +30,7 @@ export default async function LinkInterview(props: PageProps) {
   }
 
   return (
-    <>
+    <Suspense fallback={null}>
       <LandingPage 
         title={data?.metaData?.shareTitle}
         description={data?.metaData?.shareDescription}
@@ -38,6 +39,6 @@ export default async function LinkInterview(props: PageProps) {
         isActive={data?.status === StudyStatus.ACTIVE}
         userMetaData={data?.userMetaData}
       />
-    </>
+    </Suspense>
   )
 }

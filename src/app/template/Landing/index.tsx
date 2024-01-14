@@ -2,9 +2,9 @@
 
 import Markdown from "react-markdown";
 
-import { StudyUserMetaData } from "@/core/study";
 import { ModeToggle } from "@/app/components/ModeToggle";
-import { RespondentForm } from "./components/RespondentForm";
+import { RespondentForm } from "@/app/template/components/RespondentForm";
+import { StudyUserMetaData } from "@/core/study";
 
 const mainColor = "#3752dc";
 

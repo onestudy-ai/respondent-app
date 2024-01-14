@@ -4,7 +4,7 @@ const endpoint = `${process.env.API_ENDPOINT}/study`;
 
 export const getStudyById = async (studyId: string) => {
 	const res = await fetch(`${endpoint}/${studyId}`, {
-		cache: 'no-cache',
+		// cache: 'no-cache',
 		headers: {
 			'Content-Type': 'application/json',
 			// TODO: Add API key

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import React from "react";
+import React, { Suspense } from "react";
 import { Plus_Jakarta_Sans as MainFont } from 'next/font/google'
 import { cn } from "@/lib/utils"
 import "@/app/globals.css"
@@ -28,14 +28,16 @@ export default function RootLayout({
 					`${mainFont.className} ${mainFont.variable}`
 				)}
 			>
-				<Providers
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
-					{children}
-				</Providers>
+				<Suspense fallback={null}>
+					<Providers
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						{children}
+					</Providers>
+				</Suspense>
 			</body>
 		</html>
 	)
