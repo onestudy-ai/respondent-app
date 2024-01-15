@@ -1,14 +1,22 @@
-"use client"
+"use client";
 
+import { ArrowRightCircleIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FieldValues } from 'react-hook-form';
 import Markdown from "react-markdown";
 
 import { ModeToggle } from "@/app/components/ModeToggle";
-import { RespondentForm } from "@/app/template/components/RespondentForm";
+import { Button } from "@/app/components/ui/button";
+import { toast } from "@/app/components/ui/use-toast";
+import useCreateInterview from "@/app/hooks/interview";
+import { RespondentForm } from "@/app/template/Landing/RespondentForm";
 import { StudyUserMetaData } from "@/core/study";
 
 const mainColor = "#3752dc";
 
 export type LandingPageProps = {
+	studyId?: string;
 	title?: string;
 	description?: string;
 	headerBgColor?: string;
@@ -18,7 +26,36 @@ export type LandingPageProps = {
 }
 
 export default function LandingPage(props: LandingPageProps) {
-		return (
+	const [isStarting, setIsStarting] = useState(false);
+	const router = useRouter();
+	const { mutateAsync } = useCreateInterview();
+
+	const handleUserFields = async (data: FieldValues) => {
+		handleStartInterview(data);
+	};
+
+	const handleStartInterview = async (data?: FieldValues) => {
+		console.log(data, props.studyId)
+		if (!props.studyId) return;
+
+		setIsStarting(true);
+		const results = await mutateAsync({
+			studyId: props.studyId,
+			userMetaData: data ? data.userMetaData : undefined
+		});
+
+		if (results && !results.success) {
+			toast({
+				description: `The interview could not be started.  Please try again later.`,
+				variant: "destructive"
+			});
+			setIsStarting(false);
+		} else {
+			router.push(`/interview/${results?.id}`);
+		}
+	};
+
+	return (
 		<>
 			<div className="relative isolate overflow-hidden bg-white dark:bg-stone-950 min-h-screen flex-col items-center justify-between">
 				<div
@@ -68,8 +105,8 @@ export default function LandingPage(props: LandingPageProps) {
 									}
 								>
 									<Markdown className="prose dark:prose-invert">
-                    {props.description || "Thank you for taking the time and talking with us.  We have just a few things to ask you..."}
-                  </Markdown>
+										{props.description || "Thank you for taking the time and talking with us.  We have just a few things to ask you..."}
+									</Markdown>
 								</div>
 
 								{props.userMetaData?.length ? (
@@ -79,12 +116,29 @@ export default function LandingPage(props: LandingPageProps) {
 											' flex flex-col space-y-1 font-heading w-full lg:w-2/3'
 										}
 									>
-										<RespondentForm 
+										<RespondentForm
 											userMetaData={props.userMetaData}
+											isStarting={isStarting}
+											handleSubmit={handleUserFields}
 										/>
 									</div>
 								) : (
-									<>Button goes here</>
+									<Button
+										size="lg"
+										disabled={isStarting}
+										className={'flex justify-center mx-auto'}
+										data-cy={'invite-form-link'}
+										type="button"
+											onClick={() => handleStartInterview()}
+									>
+										<span className="flex items-center space-x-2 font-bold">
+											<span>
+												{isStarting ? 'Starting interview...' : 'Get started'}
+											</span>
+
+											<ArrowRightCircleIcon className="h-5" />
+										</span>
+									</Button>
 								)}
 							</>
 						)}

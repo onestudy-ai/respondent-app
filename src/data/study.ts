@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { Study } from "@/core/study";
 
 const endpoint = `${process.env.API_ENDPOINT}/study`;

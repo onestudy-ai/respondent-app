@@ -1,22 +1,21 @@
 'use client'
 
 import { FieldValues, useForm } from 'react-hook-form';
-import { useState } from 'react';
 
-import { StudyUserMetaData } from "@/core/study";
 import { Button } from '@/app/components/ui/button';
-import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
+import { Label } from '@/app/components/ui/label';
+import { StudyUserMetaData } from "@/core/study";
 
 export const RespondentForm = (props: {
 	userMetaData: StudyUserMetaData[];
+	isStarting: boolean;
+	handleSubmit: (data: FieldValues) => void;
 }) => {
-	const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-	const [isStarting, setIsStarting] = useState(false);
+	const { register, handleSubmit, formState: { errors } } = useForm();
 
 	const handleUserFields = async (data: FieldValues) => {
-		setIsStarting(true);
-		console.log('TODO: Start interview callback');
+		props.handleSubmit(data);
 	};
 
 	return (
@@ -51,13 +50,13 @@ export const RespondentForm = (props: {
 			<div className={'flex justify-center space-x-2 w-full'}>
 				<Button
 					size="lg"
-					disabled={isStarting}
+					disabled={props.isStarting}
 					className={'flex justify-center mx-auto'}
 					type="submit"
 				>
 					<span className="flex items-center space-x-2 font-bold">
 						<span>
-							{isStarting ? 'Starting interview...' : 'Get started'}
+							{props.isStarting ? 'Starting interview...' : 'Get started'}
 						</span>
 					</span>
 				</Button>

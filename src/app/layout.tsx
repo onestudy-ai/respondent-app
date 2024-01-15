@@ -1,9 +1,11 @@
-import type { Metadata } from 'next'
-import React, { Suspense } from "react";
-import { Plus_Jakarta_Sans as MainFont } from 'next/font/google'
-import { cn } from "@/lib/utils"
 import "@/app/globals.css"
+
+import type { Metadata } from 'next'
+import { Plus_Jakarta_Sans as MainFont } from 'next/font/google'
+import React, { Suspense } from "react";
+
 import { Providers } from "@/app/providers";
+import { cn } from "@/lib/utils"
 
 const mainFont = MainFont({
 	subsets: ['latin'],
