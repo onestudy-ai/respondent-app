@@ -2,7 +2,7 @@ import 'server-only';
 
 import { Study } from "@/core/study";
 
-const endpoint = `${process.env.API_ENDPOINT}/study`;
+const endpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/study`;
 
 export const getStudyById = async (studyId: string) => {
 	const res = await fetch(`${endpoint}/${studyId}`, {

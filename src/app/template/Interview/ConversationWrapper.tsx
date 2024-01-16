@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useChat } from "ai/react"
 import Image from "next/image";
@@ -6,14 +6,16 @@ import { useState } from "react";
 import Markdown from "react-markdown";
 
 import { Button } from "@/app/components/ui/button";
-import { Input } from "@/app/components/ui/input";
-import { Label } from "@/app/components/ui/label";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Interview, MessageWithID } from "@/core/interview";
 import { endInterviewDelimiter } from "@/lib/utils";
-import RightArrow from "$/assets/icons/corner-up-right.svg"
+import RightArrow from "$/assets/icons/corner-up-right.svg";
 
 const mainColor = "#3752dc";
+
+if (!process.env.NEXT_PUBLIC_API_ENDPOINT) {
+	throw new Error('NEXT_PUBLIC_API_ENDPOINT env variable is not set');
+}
 
 const ConversationWrapper = (props: {
 	interview?: Interview | null;
@@ -21,8 +23,8 @@ const ConversationWrapper = (props: {
 	const firstQuestion = props.interview?.study?.meta?.firstQuestion;
 	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.meta?.followUpQuestionNumber || 5);
 	const { messages, append, input, handleInputChange, handleSubmit, isLoading } = useChat({
-		// TODO: Point to correct endpoint
-		api: '/api/conversation/interview',
+		api: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/conversation/interview`,
+		// credentials: 'include',
 		id: props.interview?.id,
 		initialMessages: [
 			...(props.interview?.rawMessages as MessageWithID[] || []),

@@ -1,6 +1,6 @@
 import { Interview } from "@/core/interview";
 
-const endpoint = `${process.env.API_ENDPOINT}`;
+const endpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
 
 export const getInterviewById = async (interviewId: string) => {
 	const res = await fetch(`${endpoint}/conversation/${interviewId}`, {

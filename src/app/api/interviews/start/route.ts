@@ -4,7 +4,6 @@ export async function POST(request: Request) {
 	const json = await request.json();
 	const studyId = json.studyId;
 	const userMetaData = json.userMetaData;
-	console.log('json', json)
 
 	if (!studyId) {
 		return Response.json({

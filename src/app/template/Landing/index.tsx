@@ -35,7 +35,6 @@ export default function LandingPage(props: LandingPageProps) {
 	};
 
 	const handleStartInterview = async (data?: FieldValues) => {
-		console.log(data, props.studyId)
 		if (!props.studyId) return;
 
 		setIsStarting(true);

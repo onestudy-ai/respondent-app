@@ -14,7 +14,6 @@ export default async function InterviewPage(props: PageProps) {
 	} catch (error) {
 		data = null;
 	}
-	console.log('INTERVIEW DATA', data, props.params.id)
 
 	return (
 		<Suspense fallback={null}>
