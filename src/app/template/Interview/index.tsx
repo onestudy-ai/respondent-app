@@ -11,15 +11,17 @@ export const InterviewWrapper = (props: InterviewProps) => {
 		<div className="relative isolate overflow-hidden dark:bg-stone-950 min-h-screen flex-col items-center justify-between">
 			{/* Header */}
 			<div className="w-full flex justify-between items-center px-3 py-5">
-				{props.interview?.study?.metaData?.imageUrl ? (
-					<img
-						src={props.interview?.study?.metaData?.imageUrl}
-						className={'w-20 h-20 object-contain rounded-lg dark:bg-white p-1'}
-					/>
-				) : null}
+				<div className="flex items-center">
+					{props.interview?.study?.meta?.imageUrl ? (
+						<img
+							src={props.interview?.study?.meta?.imageUrl}
+							className={'w-20 h-20 object-contain rounded-lg dark:bg-white p-1'}
+						/>
+					) : null}
 
-				<div className="font-bold text-sm px-3 text-center">
-					<span>{props.interview?.study?.metaData?.shareTitle || "We need your feedback!"}</span>
+					<div className="font-bold text-sm px-3 ml-3 text-center">
+						<span>{props.interview?.study?.meta?.shareTitle || "We need your feedback!"}</span>
+					</div>
 				</div>
 
 				<div className="">

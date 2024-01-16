@@ -17,7 +17,7 @@ export interface Study {
 	id: string;
 	name: string;
 	status?: StudyStatus;
-	metaData?: {
+	meta?: {
 		numberCompleted?: number;
 		generalInformation?: string;
 		firstQuestion?: string;

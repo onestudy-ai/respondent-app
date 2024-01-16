@@ -84,9 +84,6 @@ html,
 body {
   @apply bg-white dark:bg-black font-sans leading-loose;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background: linear-gradient(to bottom,
-        transparent,
-        rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer base {

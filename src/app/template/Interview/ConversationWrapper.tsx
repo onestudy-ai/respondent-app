@@ -18,8 +18,8 @@ const mainColor = "#3752dc";
 const ConversationWrapper = (props: {
 	interview?: Interview | null;
 }) => {
-	const firstQuestion = props.interview?.study?.metaData?.firstQuestion;
-	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.metaData?.followUpQuestionNumber || 5);
+	const firstQuestion = props.interview?.study?.meta?.firstQuestion;
+	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.meta?.followUpQuestionNumber || 5);
 	const { messages, append, input, handleInputChange, handleSubmit, isLoading } = useChat({
 		// TODO: Point to correct endpoint
 		api: '/api/conversation/interview',
@@ -58,7 +58,7 @@ const ConversationWrapper = (props: {
 					className="h-1 transition-all duration-500 ease-in-out"
 					style={{
 						width: `${((5 - questionsLeft) / 5) * 100}%`,
-						backgroundColor: props.interview?.study?.metaData?.primaryColor || mainColor
+						backgroundColor: props.interview?.study?.meta?.primaryColor || mainColor
 					}}
 				/>
 			</div>
@@ -126,7 +126,7 @@ const TheEnd = (props: {
 				}
 			>
 				<Markdown className="prose dark:prose-invert">
-					{props.interview?.study?.metaData?.farewellMessage || 'You have completed the interview.  Thank you for your time!'}
+						{props.interview?.study?.meta?.farewellMessage || 'You have completed the interview.  Thank you for your time!'}
 				</Markdown>
 			</div>
 		</div>
