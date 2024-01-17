@@ -24,7 +24,6 @@ const ConversationWrapper = (props: {
 	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.meta?.followUpQuestionNumber || 5);
 	const { messages, append, input, handleInputChange, handleSubmit, isLoading } = useChat({
 		api: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/conversation/interview`,
-		// credentials: 'include',
 		id: props.interview?.id,
 		initialMessages: [
 			...(props.interview?.rawMessages as MessageWithID[] || []),

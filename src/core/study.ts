@@ -17,18 +17,21 @@ export interface Study {
 	id: string;
 	name: string;
 	status?: StudyStatus;
-	meta?: {
-		numberCompleted?: number;
-		generalInformation?: string;
-		firstQuestion?: string;
-		farewellMessage?: string;
-		followUpQuestionNumber?: number;
-		shareTitle?: string;
-		shareDescription?: string;
-		primaryColor?: string;
-		imageUrl?: string;
-		[key: string]: any;
-	};
+	meta?: MetaData;
+	metaData?: MetaData;
 	userMetaData?: StudyUserMetaData[];
 }
+
+type MetaData = {
+	numberCompleted?: number;
+	generalInformation?: string;
+	firstQuestion?: string;
+	farewellMessage?: string;
+	followUpQuestionNumber?: number;
+	shareTitle?: string;
+	shareDescription?: string;
+	primaryColor?: string;
+	imageUrl?: string;
+	[key: string]: any;
+};
 

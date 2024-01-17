@@ -9,15 +9,14 @@ export const getStudyById = async (studyId: string) => {
 		// cache: 'no-cache',
 		headers: {
 			'Content-Type': 'application/json',
-			// TODO: Add API key
-			// 'API-Key': process.env.DATA_API_KEY!,
+			'x-api-key': process.env.API_KEY as string,
 		},
 	})
-	const data = await res.json()
+	const data = await res.json();
 
 	if (!data.success) {
 		throw new Error(`Failed to fetch study with id ${studyId}: ${data.message}`);
 	}
 
-	return data.data as Study || {};
+	return data.data as Study;
 }

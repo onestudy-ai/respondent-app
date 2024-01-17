@@ -7,8 +7,7 @@ export const getInterviewById = async (interviewId: string) => {
 		// cache: 'no-cache',
 		headers: {
 			'Content-Type': 'application/json',
-			// TODO: Add API key
-			// 'API-Key': process.env.DATA_API_KEY!,
+			'x-api-key': process.env.API_KEY as string,
 		},
 	})
 	const data = await res.json()
@@ -32,8 +31,7 @@ export const startInterview = async (
 		}),
 		headers: {
 			'Content-Type': 'application/json',
-			// TODO: Add API key
-			// 'API-Key': process.env.DATA_API_KEY!,
+			'x-api-key': process.env.API_KEY as string,
 		},
 	});
 	if (!res.ok) {
