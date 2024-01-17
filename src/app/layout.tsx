@@ -1,34 +1,46 @@
+import "@/app/globals.css"
+
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans as MainFont } from 'next/font/google'
-import { cn } from '@/lib/utils'
+import React, { Suspense } from "react";
 
-import './globals.css'
+import { Providers } from "@/app/providers";
+import { cn } from "@/lib/utils"
 
 const mainFont = MainFont({
-  subsets: ['latin'],
-  variable: '--font-main',
+	subsets: ['latin'],
+	variable: '--font-main',
 })
 
 export const metadata: Metadata = {
-  title: 'Conversation',
-  description: '',
+	title: 'One Study Interviews.',
+	description: '',
 }
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode
 }) {
-  return (
-    <html lang="en">
-      <body 
-        className={cn(
-          "min-h-screen bg-white dark:bg-black",
-          `${mainFont.className} ${mainFont.variable}`
-        )}
-      >
-        {children}
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<body
+				className={cn(
+					"min-h-screen bg-white dark:bg-black",
+					`${mainFont.className} ${mainFont.variable}`
+				)}
+			>
+				<Suspense fallback={null}>
+					<Providers
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						{children}
+					</Providers>
+				</Suspense>
+			</body>
+		</html>
+	)
 }
