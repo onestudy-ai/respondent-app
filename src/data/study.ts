@@ -1,3 +1,8 @@
+/**
+ * This is a server-side file that talks to the OneStudy.ai API.
+ * It is not meant to be used on the client-side.
+ */
+
 import 'server-only';
 
 import { Study } from "@/core/study";

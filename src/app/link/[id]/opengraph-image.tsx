@@ -1,5 +1,6 @@
-import { getStudyById } from '@/data/study';
 import { ImageResponse } from 'next/og';
+
+import { getStudyById } from '@/data/study';
 
 export const size = {
 	width: 1200,

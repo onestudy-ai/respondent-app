@@ -1,10 +1,16 @@
+/**
+ * This is a server-side file that talks to the OneStudy.ai API.
+ * It is not meant to be used on the client-side.
+ */
+
+import 'server-only';
+
 import { Interview } from "@/core/interview";
 
 const endpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
 
 export const getInterviewById = async (interviewId: string) => {
 	const res = await fetch(`${endpoint}/conversation/${interviewId}`, {
-		// cache: 'no-cache',
 		headers: {
 			'Content-Type': 'application/json',
 			'x-api-key': process.env.API_KEY as string,
