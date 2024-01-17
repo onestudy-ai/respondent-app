@@ -22,6 +22,7 @@ const useCreateInterview = () => {
 				let data: {
 					success?: boolean;
 					id?: string;
+					token?: string;
 				} = {};
 
 				if (!res.ok) {

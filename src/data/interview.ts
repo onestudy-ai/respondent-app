@@ -46,6 +46,7 @@ export const startInterview = async (
 
 	return {
 		success: data.success,
+		token: data.token,
 		id: data.id,
 	};
 }

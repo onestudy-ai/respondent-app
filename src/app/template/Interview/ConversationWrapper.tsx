@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react"
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Markdown from "react-markdown";
 
@@ -21,9 +22,14 @@ const ConversationWrapper = (props: {
 	interview?: Interview | null;
 }) => {
 	const firstQuestion = props.interview?.study?.meta?.firstQuestion;
+	const searchParams = useSearchParams();
+	const token = searchParams.get('token');
 	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.meta?.followUpQuestionNumber || 5);
 	const { messages, append, input, handleInputChange, handleSubmit, isLoading } = useChat({
 		api: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/conversation/interview`,
+		headers: {
+			'Authorization': `Bearer ${token}`,
+		},
 		id: props.interview?.id,
 		initialMessages: [
 			...(props.interview?.rawMessages as MessageWithID[] || []),

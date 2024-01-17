@@ -50,7 +50,7 @@ export default function LandingPage(props: LandingPageProps) {
 			});
 			setIsStarting(false);
 		} else {
-			router.push(`/interview/${results?.id}`);
+			router.push(`/interview/${results?.id}?token=${results?.token}`);
 		}
 	};
 
