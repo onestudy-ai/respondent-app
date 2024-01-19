@@ -1,5 +1,6 @@
 import "@/app/globals.css"
 
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans as MainFont } from 'next/font/google'
 import React, { Suspense } from "react";
@@ -40,6 +41,7 @@ export default function RootLayout({
 						{children}
 					</Providers>
 				</Suspense>
+				<Analytics />
 			</body>
 		</html>
 	)
