@@ -18,3 +18,9 @@ The following ENV vars are required to run this app:
 `NEXT_PUBLIC_API_ENDPOINT=https://onestudy.ai/api/1`: The OneStudy.ai API endpoint
 
 **NOTE:** You must get an API key from OneStudy.ai before you can use this app. Contact OneStudy.ai for more information.
+
+## Development
+
+Add a `.env.local` and add the above ENV vars.
+
+Run `npm run dev` to start the NextJS server
