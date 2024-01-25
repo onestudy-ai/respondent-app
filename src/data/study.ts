@@ -11,7 +11,7 @@ const endpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/study`;
 
 export const getStudyById = async (studyId: string) => {
 	const res = await fetch(`${endpoint}/${studyId}`, {
-		// cache: 'no-cache',
+		cache: 'no-cache',
 		headers: {
 			'Content-Type': 'application/json',
 			'x-api-key': process.env.API_KEY as string,
