@@ -25,7 +25,7 @@ const ConversationWrapper = (props: {
 	const searchParams = useSearchParams();
 	const token = searchParams.get('token');
 	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.meta?.followUpQuestionNumber || 5);
-	const { messages, append, input, handleInputChange, handleSubmit, isLoading } = useChat({
+	const { messages, append, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
 		api: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/conversation/interview`,
 		headers: {
 			'Authorization': `Bearer ${token}`,
@@ -45,6 +45,11 @@ const ConversationWrapper = (props: {
 				setQuestionsLeft(-2);
 			} else {
 				setQuestionsLeft(questionsLeft - 1);
+			}
+		},
+		onError: (error) => {
+			if (error.message.includes('Invalid or expired token')) {
+				window.history.back();
 			}
 		}
 	});
