@@ -18,6 +18,15 @@ export async function generateMetadata(
   return {
     title: data?.metaData?.shareTitle || "We need your feedback!",
     description: data?.metaData?.shareDescription || "",
+    openGraph: {
+      title: data?.metaData?.shareTitle || "We need your feedback!",
+      description: data?.metaData?.shareDescription || "",
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: data?.metaData?.shareTitle || "We need your feedback!",
+      description: data?.metaData?.shareDescription || "",
+    },
   }
 }
 
