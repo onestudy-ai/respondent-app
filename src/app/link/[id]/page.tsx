@@ -16,6 +16,7 @@ export async function generateMetadata(
   const data = await getStudyById(params.id);
 
   return {
+    metadataBase: new URL('https://interview.onestudy.ai/'),
     title: data?.metaData?.shareTitle || "We need your feedback!",
     description: data?.metaData?.shareDescription || "",
     openGraph: {

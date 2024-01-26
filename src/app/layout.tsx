@@ -16,6 +16,7 @@ const mainFont = MainFont({
 export const metadata: Metadata = {
 	title: 'One Study Interviews.',
 	description: '',
+	metadataBase: new URL('https://interview.onestudy.ai/'),
 }
 
 export default function RootLayout({
