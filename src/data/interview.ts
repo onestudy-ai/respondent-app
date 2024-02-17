@@ -9,15 +9,15 @@ import { Interview } from "@/core/interview";
 
 const endpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
 
-export const getInterviewById = async (interviewId: string) => {
+export const getInterviewById = async (interviewId: string, token: string) => {
 	const res = await fetch(`${endpoint}/conversation/${interviewId}`, {
 		headers: {
 			'Content-Type': 'application/json',
 			'x-api-key': process.env.API_KEY as string,
+			'Authorization': `Bearer ${token}`,
 		},
 	})
-	const data = await res.json()
-
+	const data = await res.json();
 	if (!data.success) {
 		throw new Error(`Failed to fetch interview with id ${interviewId}: ${data.message}`);
 	}

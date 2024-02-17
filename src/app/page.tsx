@@ -7,6 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: "OneStudy.ai Research and Interviews",
 		description: "OneStudy is a platform for researchers to conduct interviews.",
+		metadataBase: new URL('https://interview.onestudy.ai/'),
 	}
 }
 

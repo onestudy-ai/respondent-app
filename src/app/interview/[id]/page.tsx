@@ -4,16 +4,13 @@ import { InterviewWrapper } from "@/app/template/Interview";
 import { getInterviewById } from "@/data/interview";
 
 type PageProps = {
-	params: { id: string }
+	params: { id: string },
+	searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export default async function InterviewPage(props: PageProps) {
-	let data;
-	try {
-		data = await getInterviewById(props.params.id);
-	} catch (error) {
-		data = null;
-	}
+	const token = props.searchParams.token || "";
+	const data = await getInterviewById(props.params.id, token! as string);
 
 	return (
 		<Suspense fallback={null}>
