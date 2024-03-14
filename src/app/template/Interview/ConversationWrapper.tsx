@@ -3,9 +3,10 @@
 import { useChat } from "ai/react"
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 
+import { IconMicrophone, useRecordVoice } from "@/app/components/Recorder";
 import { Button } from "@/app/components/ui/button";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Interview, MessageWithID } from "@/core/interview";
@@ -24,6 +25,7 @@ const ConversationWrapper = (props: {
 	const firstQuestion = props.interview?.study?.meta?.firstQuestion;
 	const searchParams = useSearchParams();
 	const token = searchParams.get('token');
+	const { startRecording, stopRecording, text, isRecording, setText } = useRecordVoice();
 	const [questionsLeft, setQuestionsLeft] = useState(props.interview?.study?.meta?.followUpQuestionNumber || 5);
 	const { messages, append, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
 		api: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/conversation/interview`,
@@ -63,6 +65,14 @@ const ConversationWrapper = (props: {
 		});
 	};
 
+	useEffect(() => {
+		if (text) {
+			// @ts-ignore
+			handleInputChange({ target: { value: text } });
+			setText('');
+		}
+	}, [handleInputChange, setText, text]);
+
 	return (
 		<>
 			<div className="w-full h-1 bg-gray-200 fixed top-0 left-0">
@@ -92,6 +102,19 @@ const ConversationWrapper = (props: {
 						</div>
 
 						<div className="grid w-full gap-2">
+							<button
+								onMouseDown={startRecording}    // Start recording when mouse is pressed
+								onMouseUp={stopRecording}        // Stop recording when mouse is released
+								onTouchStart={startRecording}    // Start recording when touch begins on a touch device
+								onTouchEnd={stopRecording}        // Stop recording when touch ends on a touch device
+								className={`hover:bg-gray-200 p-2 rounded-xl ${isRecording.current ? 'text-red-500' : 'text-gray-900'}`}
+							>
+								<div className="flex items-center text-xs">
+									<IconMicrophone />
+									{isRecording.current ? 'Release when done' : 'Press and hold to record'}
+								</div>
+							</button>
+
 							<form onSubmit={handleSubmit} className="w-full flex-col justify-center items-center">
 								<Textarea
 									id="prompt"
