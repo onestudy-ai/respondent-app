@@ -102,20 +102,22 @@ const ConversationWrapper = (props: {
 						</div>
 
 						<div className="grid w-full gap-2">
-							<button
-								onMouseDown={startRecording}    // Start recording when mouse is pressed
-								onMouseUp={stopRecording}        // Stop recording when mouse is released
-								onTouchStart={startRecording}    // Start recording when touch begins on a touch device
-								onTouchEnd={stopRecording}        // Stop recording when touch ends on a touch device
-								className={`hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-xl ${isRecording.current ? 'text-red-500' : 'text-gray-900 dark:text-gray-200 hidden lg:block'}`}
-							>
-								<div className="flex items-center text-xs">
-									<IconMicrophone />
-									<span className="ml-2">
-										{isRecording.current ? 'Release when done' : 'Press and hold to record'}
-									</span>
-								</div>
-							</button>
+							{props.interview?.study?.meta?.audioEnabled ? (
+								<button
+									onMouseDown={startRecording}    // Start recording when mouse is pressed
+									onMouseUp={stopRecording}        // Stop recording when mouse is released
+									onTouchStart={startRecording}    // Start recording when touch begins on a touch device
+									onTouchEnd={stopRecording}        // Stop recording when touch ends on a touch device
+									className={`hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-xl ${isRecording.current ? 'text-red-500' : 'text-gray-900 dark:text-gray-200 hidden lg:block'}`}
+								>
+									<div className="flex items-center text-xs">
+										<IconMicrophone />
+										<span className="ml-2">
+											{isRecording.current ? 'Release when done' : 'Press and hold to record'}
+										</span>
+									</div>
+								</button>
+							) : null}
 
 							<form onSubmit={handleSubmit} className="w-full flex-col justify-center items-center">
 								<Textarea
