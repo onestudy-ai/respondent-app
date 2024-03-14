@@ -106,7 +106,7 @@ export { Microphone };
 export const IconMicrophone = () => {
 	return (
 		<svg
-			className="w-4 h-4"
+			className="w-5 h-5 dark:bg-white dark:p-1 dark:rounded-xl"
 			xmlns="http://www.w3.org/2000/svg"
 			data-name="Layer 1"
 			viewBox="0 0 48 48"

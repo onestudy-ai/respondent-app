@@ -107,11 +107,13 @@ const ConversationWrapper = (props: {
 								onMouseUp={stopRecording}        // Stop recording when mouse is released
 								onTouchStart={startRecording}    // Start recording when touch begins on a touch device
 								onTouchEnd={stopRecording}        // Stop recording when touch ends on a touch device
-								className={`hover:bg-gray-200 p-2 rounded-xl ${isRecording.current ? 'text-red-500' : 'text-gray-900'}`}
+								className={`hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-xl ${isRecording.current ? 'text-red-500' : 'text-gray-900 dark:text-gray-200'}`}
 							>
 								<div className="flex items-center text-xs">
 									<IconMicrophone />
-									{isRecording.current ? 'Release when done' : 'Press and hold to record'}
+									<span className="ml-2">
+										{isRecording.current ? 'Release when done' : 'Press and hold to record'}
+									</span>
 								</div>
 							</button>
 
